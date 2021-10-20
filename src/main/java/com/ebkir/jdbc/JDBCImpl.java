@@ -4,13 +4,14 @@ import com.ebkir.datasource.User;
 import com.ebkir.datasource.UserDatabase;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class JDBCImpl implements UserDatabase<User> {
 
-    private final Properties properties = new Properties();
     private Connection connection;
 
     public JDBCImpl() throws SQLException {
@@ -19,12 +20,44 @@ public class JDBCImpl implements UserDatabase<User> {
 
     @Override
     public void create(User user) {
-
+        String sql = "insert into User(firstname, lastname, age, dateOfBirth)\n" +
+                "values(?, ?, ?, curdate());";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, user.getFirstname());
+            ps.setString(2, user.getLastname());
+            ps.setInt(3, user.getAge());
+            ps.execute();
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<User> read() {
-        return null;
+        String sql = "select * from User";
+
+        List<User> users = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet r = ps.executeQuery();
+
+            while(r.next()) {
+                users.add(new User(
+                        r.getInt("id"),
+                        r.getString("firstname"),
+                        r.getString("lastname"),
+                        r.getInt("age"),
+                        r.getDate("dateOfBirth")
+                ));
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
     @Override

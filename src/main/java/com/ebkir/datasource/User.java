@@ -10,6 +10,12 @@ public class User {
     private int age;
     private Date dateOfBirth;
 
+    public User(String firstname, String lastname, int age, Date dateOfBirth) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.dateOfBirth = dateOfBirth;
+    }
     public User(int id, String firstname, String lastname, int age, Date dateOfBirth) {
         this.id = id;
         this.firstname = firstname;
@@ -56,5 +62,16 @@ public class User {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", age=" + age +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
     }
 }
