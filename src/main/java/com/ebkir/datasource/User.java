@@ -10,14 +10,12 @@ public class User {
     private String lastname;
     private int age;
     private Date dateOfBirth;
-    private String uuid;
 
     public User(String firstname, String lastname, int age, Date dateOfBirth) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
-        this.uuid = UUID.randomUUID().toString();
     }
     public User(int id, String firstname, String lastname, int age, Date dateOfBirth) {
         this.id = id;
@@ -25,7 +23,6 @@ public class User {
         this.lastname = lastname;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
-        this.uuid = UUID.randomUUID().toString();
     }
 
     public int getId() {
@@ -68,16 +65,8 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
     @Override
     public String toString() {
-        return "User(My id is " + this.getId() + " and my UUID is " + this.getUuid() + ")";
+        return "User(My id is " + this.getId() + " and my firstname is " + this.getFirstname() + ")";
     }
 }

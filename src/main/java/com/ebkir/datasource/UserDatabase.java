@@ -8,7 +8,7 @@ public interface UserDatabase<T> {
 
     List<T> read();
 
-    void update(T t);
+    void update(int id, T t);
 
     void remove(int id);
 }

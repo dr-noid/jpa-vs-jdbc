@@ -61,7 +61,7 @@ public class JDBCImpl implements UserDatabase<User> {
     }
 
     @Override
-    public void update(User user) {
+    public void update(int id, User user) {
         String sql =
                 "update User\n" +
                 "set User.firstname = ?, User.lastname = ?, User.age = ?, User.dateOfBirth = curdate()\n" +
@@ -71,7 +71,7 @@ public class JDBCImpl implements UserDatabase<User> {
             ps.setString(1, user.getFirstname());
             ps.setString(2, user.getLastname());
             ps.setInt(3, user.getAge());
-            ps.setInt(4, user.getId());
+            ps.setInt(4, id);
             ps.execute();
         }
         catch(SQLException e) {
