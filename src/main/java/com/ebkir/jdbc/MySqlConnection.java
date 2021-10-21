@@ -1,6 +1,6 @@
 package com.ebkir.jdbc;
 
-import com.ebkir.spotitube.datasource.util.DatabaseProperties;
+import com.ebkir.jdbc.DatabaseProperties;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

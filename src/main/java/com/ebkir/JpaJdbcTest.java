@@ -11,20 +11,14 @@ import java.util.Date;
 
 public class JpaJdbcTest {
 
-    private static final User USER = new User("firstname", "lastname", 33, new Date());
-    private static final User USER2 = new User("testuser2", "testlastname2", 22, new Date());
-    private static final User UPDATED_USER = new User(1, "updatedfirstname",
-            "updatedlastname", 44, new Date());
-
-    private static final JpaUser jpaUser = new JpaUser();
-
     public static void main(String[] args) throws SQLException {
-//        jdbc();
+        jdbc();
         jpa();
     }
 
     public static void jpa() {
         UserDatabase<JpaUser> jpaDatabase = new JPAImpl();
+        JpaUser jpaUser = new JpaUser();
 
         jpaUser.setFirstName("firstname");
         jpaUser.setLastname("lastname");
@@ -38,6 +32,11 @@ public class JpaJdbcTest {
 
     public static void jdbc() throws SQLException {
         UserDatabase<User> jdbc = new JDBCImpl();
+
+        User USER = new User("firstname", "lastname", 33, new Date());
+        User USER2 = new User("testuser2", "testlastname2", 22, new Date());
+        User UPDATED_USER = new User(1, "updatedfirstname",
+                "updatedlastname", 44, new Date());
 
         System.out.println("Adding test users to JDBCDatabase");
         jdbc.create(USER);
@@ -56,9 +55,5 @@ public class JpaJdbcTest {
 
         System.out.println("\nRemaining JDBC users:");
         System.out.println(jdbc.read());
-    }
-
-    public static void jpa(User user) {
-//        Database jpa = new JPAImpl();
     }
 }

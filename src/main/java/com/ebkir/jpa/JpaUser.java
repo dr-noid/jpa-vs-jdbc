@@ -66,8 +66,6 @@ public class JpaUser {
         this.dateOfBirth = dateOfBirth;
     }
 
-
-
     @Override
     public String toString() {
         return "JpaUser(My id is " + this.getId() + " and my firstname is " + this.getFirstName() + ")";

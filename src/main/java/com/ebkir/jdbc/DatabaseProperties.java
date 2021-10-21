@@ -1,4 +1,4 @@
-package com.ebkir.spotitube.datasource.util;
+package com.ebkir.jdbc;
 
 import java.io.IOException;
 import java.util.Properties;

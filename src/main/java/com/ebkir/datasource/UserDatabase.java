@@ -1,5 +1,6 @@
 package com.ebkir.datasource;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDatabase<T> {

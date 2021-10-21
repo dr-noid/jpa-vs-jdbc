@@ -22,6 +22,7 @@ public class JDBCImpl implements UserDatabase<User> {
     public void create(User user) {
         String sql = "insert into User(firstname, lastname, age, dateOfBirth)\n" +
                 "values(?, ?, ?, curdate());";
+
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, user.getFirstname());
@@ -37,9 +38,7 @@ public class JDBCImpl implements UserDatabase<User> {
     @Override
     public List<User> read() {
         String sql = "select * from User";
-
         List<User> users = new ArrayList<>();
-
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet r = ps.executeQuery();
