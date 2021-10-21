@@ -10,5 +10,5 @@ public interface UserDatabase<T> {
 
     void update(T t);
 
-    void remove(T t);
+    void remove(int id);
 }

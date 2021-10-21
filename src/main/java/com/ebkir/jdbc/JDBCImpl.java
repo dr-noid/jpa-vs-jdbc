@@ -62,11 +62,34 @@ public class JDBCImpl implements UserDatabase<User> {
 
     @Override
     public void update(User user) {
-
+        String sql =
+                "update User\n" +
+                "set User.firstname = ?, User.lastname = ?, User.age = ?, User.dateOfBirth = curdate()\n" +
+                "where User.id = ?;";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, user.getFirstname());
+            ps.setString(2, user.getLastname());
+            ps.setInt(3, user.getAge());
+            ps.setInt(4, user.getId());
+            ps.execute();
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void remove(User user) {
-
+    public void remove(int id) {
+        String sql =
+                "delete from User where User.id = ?;";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

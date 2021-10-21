@@ -27,7 +27,7 @@ public class JPAImpl implements UserDatabase<User> {
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(int id) {
 
     }
 }
